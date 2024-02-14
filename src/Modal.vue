@@ -12,7 +12,7 @@
 </template>
 <script>
 export default {
-  name: "disCount",
+  name: "customModal",
   props: {
     oneroom: Object,
     index: Number,
