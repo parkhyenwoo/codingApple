@@ -2,12 +2,14 @@
   <div class="menu">
     <a v-for="(a, i) in menu" :key="i">{{ a }}</a>
   </div>
-  <Modal
-    @modalClose="modalstatus = false"
-    :oneroom="oneroom"
-    :index="index"
-    :modalstatus="modalstatus"
-  ></Modal>
+  <transition name="fade">
+    <Modal
+      @modalClose="modalstatus = false"
+      :oneroom="oneroom"
+      :index="index"
+      :modalstatus="modalstatus"
+    ></Modal> </transition
+  >>
   <Card
     @modalOpen="
       modalstatus = true;
@@ -52,6 +54,16 @@ export default {
 </script>
 
 <style>
+.fade-enter-from {
+  opacity: 0;
+}
+.fade-enter-active {
+  transition: all 1s;
+}
+.fade-enter-to {
+  opacity: 1;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
