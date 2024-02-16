@@ -2,21 +2,29 @@
   <div class="menu">
     <a v-for="(a, i) in menu" :key="i">{{ a }}</a>
   </div>
-  <Modal :oneroom="oneroom" :index="index" modalstatus="modalstatus"></Modal>
-
+  <Modal
+    @modalClose="modalstatus = false"
+    :oneroom="oneroom"
+    :index="index"
+    :modalstatus="modalstatus"
+  ></Modal>
+  <Card
+    @modalOpen="
+      modalstatus = true;
+      index = $event;
+    "
+    v-for="(a, i) in oneroom"
+    :key="i"
+    :oneroom="oneroom[i]"
+  ></Card>
   <disCount></disCount>
-
-  <div v-for="(a, i) in oneroom" :key="i">
-    <img :src="a.image" class="room-img" />
-    <h4 @click="indexCheck(i)">{{ a.title }}</h4>
-    <p>{{ a.price }}만원</p>
-  </div>
 </template>
 
 <script>
 import data from "./assets/oneroom.js";
 import disCount from "./DisCount.vue";
 import Modal from "./Modal.vue";
+import Card from "./Card.vue";
 
 export default {
   name: "App",
@@ -34,14 +42,11 @@ export default {
     increase(i) {
       this.count[i] += 1;
     },
-    indexCheck(i) {
-      this.modalstatus = true;
-      this.index = i;
-    },
   },
   components: {
     disCount: disCount,
     Modal: Modal,
+    Card: Card,
   },
 };
 </script>

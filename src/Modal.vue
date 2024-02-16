@@ -7,7 +7,7 @@
       <p>{{ oneroom[index].price }}</p>
     </div>
     <disCount></disCount>
-    <!--<button @click="modalstatus = false">창 닫기</button>-->
+    <button @click="$emit = 'modalClods'">창 닫기</button>
   </div>
 </template>
 <script>
